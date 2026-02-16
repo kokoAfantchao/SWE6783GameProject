@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class BallControl : MonoBehaviour {
 
 	private Rigidbody2D rb2d;
+	public float speed = 30f;
+	public float bounceInfluence = 0.5f;
 
 	void GoBall() {
 		float rand = Random.Range (0, 2);
@@ -36,6 +39,7 @@ public class BallControl : MonoBehaviour {
 			Vector2 vel;
 			vel.x = rb2d.linearVelocity.x;
 			vel.y = (rb2d.linearVelocity.y / 2.0f) + (coll.collider.attachedRigidbody.linearVelocity.y / 3.0f);
+			vel.y *= bounceInfluence;
 			rb2d.linearVelocity = vel;
 		}
 	}
