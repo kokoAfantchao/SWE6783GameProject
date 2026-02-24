@@ -14,9 +14,18 @@ public class PlayerControls : MonoBehaviour {
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+    // void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if(collision.gameObject.name == "TopWall" || collision.gameObject.name == "BottomWall" )
+	// 	{
+	// 		Debug.Log("Player hit " + collision.gameObject.name );
+	// 		var vel = rb2d.linearVelocity;
+	// 		vel.y = -vel.y;
+	// 		rb2d.linearVelocity = vel;
+	// 		transform.position = 
+    // }
+    // Update is called once per frame
+    void Update () {
 		var vel = rb2d.linearVelocity;
 		if (Input.GetKey (moveUp)) {
 			vel.y = speed;

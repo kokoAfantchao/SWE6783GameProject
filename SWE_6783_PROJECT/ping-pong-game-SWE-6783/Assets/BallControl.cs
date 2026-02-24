@@ -24,6 +24,11 @@ public class BallControl : MonoBehaviour {
 		Invoke ("GoBall", 2);
 	}
 
+	void FixedUpdate () {
+		// Limit the ball's speed to prevent it from going too fast
+		rb2d.linearVelocity = Vector2.ClampMagnitude(rb2d.linearVelocity, speed);
+	}
+
 	void ResetBall() {
 		rb2d.linearVelocity = new Vector2 (0, 0);
 		transform.position = Vector2.zero;

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class GameManager : MonoBehaviour {
 
-	public static int PlayerScore1 = 0;
-	public static int PlayerScore2 = 0;
+	public int PlayerScore1 = 0;
+	public int PlayerScore2 = 0;
+
+	public TMP_Text player1ScoreText;
+	public TMP_Text player2ScoreText;
 
 	public GUISkin layout;
 
@@ -16,11 +19,13 @@ public class GameManager : MonoBehaviour {
 		theBall = GameObject.FindGameObjectWithTag ("Ball");
 	}
 
-	public static void Score(string wallID) {
+	public void Score(string wallID) {
 		if (wallID == "RightWall") {
 			PlayerScore1++;
+			player1ScoreText.text = PlayerScore1.ToString();
 		} else {
 			PlayerScore2++;
+			player2ScoreText.text = PlayerScore2.ToString();
 		}
 	}
 
