@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Overlay" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center; width: 100%; height: 100%; position: absolute; top: 0; right: 0; bottom: 0; left: 0; flex-shrink: 0;">
+        <ui:VisualElement name="MenuContainer" style="width: 500px; padding: 20px; background-color: rgb(45, 45, 45); border-radius: 10px; border-width: 2px; border-color: rgb(255, 255, 255); height: auto;">
+            <ui:Label text="PAUSED" name="MenuTitle" style="font-size: 40px; color: white; -webkit-unity-font-style: bold; unity-text-align: upper-center; margin-bottom: 20px; position: relative; width: 100%; height: 50px;"/>
+            <ui:Button name="ResumeBtn" text="RESUME" class="menu-button" style="margin-bottom: 10px; height: 45px; width: 100%; font-size: 20px;"/>
+            <ui:Button name="RestartBtn" text="RESTART" class="menu-button" style="margin-bottom: 10px; height: 45px; width: 100%; font-size: 20px;"/>
+            <ui:Button name="SettingsBtn" text="SETTING MENU" class="menu-button" style="margin-bottom: 10px; height: 45px; width: 100%; font-size: 20px;"/>
+            <ui:Button name="MainMenuBtn" text="MAIN MENU" class="menu-button" style="height: 45px; background-color: rgb(180, 50, 50); width: 100%; font-size: 20px;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
