@@ -11,6 +11,7 @@ public class ScoreHistoryController : MonoBehaviour
     void OnEnable()
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
+        root.style.display = DisplayStyle.None; // Hide by default
         scoreListView = root.Q<ListView>("ScoreList");
 
         // Mock Data - You would normally load this from a Save System

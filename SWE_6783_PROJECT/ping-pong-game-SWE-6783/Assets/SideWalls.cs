@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class SideWalls : MonoBehaviour {
 
+    public GameManager GameManager;
+
 	void OnTriggerEnter2D(Collider2D hitInfo) {
-		if (hitInfo.name == "Ball")
+		if (hitInfo.name == "Ball Prefab")
 		{
+			Debug.Log("Ball hit " + transform.name);
 			string wallName = transform.name;
 			GameManager.Score (wallName);
 			hitInfo.gameObject.SendMessage ("RestartGame", 1, SendMessageOptions.RequireReceiver);
