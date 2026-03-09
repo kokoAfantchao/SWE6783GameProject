@@ -14,6 +14,10 @@ public class PauseMenuController : MonoBehaviour
         // Hide the menu by default at start
         root.style.display = DisplayStyle.None;
 
+        root.style.position = Position.Absolute;
+        root.style.width = Length.Percent(100);
+        root.style.height = Length.Percent(100);
+
         // Assign Button Events
         root.Q<Button>("ResumeBtn").clicked += () => TogglePause();
         root.Q<Button>("RestartBtn").clicked += () => RestartGame();
@@ -58,7 +62,7 @@ public class PauseMenuController : MonoBehaviour
     void LoadMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenuScene"); // Ensure this matches your scene name
+        SceneManager.LoadScene("Main_Menu_Scene"); // Ensure this matches your scene name
     }
 }
 
