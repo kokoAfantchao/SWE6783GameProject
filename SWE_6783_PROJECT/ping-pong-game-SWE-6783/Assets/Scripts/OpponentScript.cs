@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class OpponentScript : MonoBehaviour
 {
-public float speed = 5f;
+    public float speed = 5f;
     public GameObject ball; // Drag the Ball object here in the Inspector
     
     // Limits how far the paddle can go up or down
