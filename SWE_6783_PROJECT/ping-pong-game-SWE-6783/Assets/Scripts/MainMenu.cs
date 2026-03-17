@@ -7,6 +7,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Level_One");
     }
 
+    public void GoToSettings()
+    {
+        SceneManager.LoadScene("SettingsScene");
+    }
+
     public void QuitGame(){
         Application.Quit();
     }
