@@ -22,6 +22,7 @@ public class PauseMenuController : MonoBehaviour
         root.Q<Button>("ResumeBtn").clicked += () => TogglePause();
         root.Q<Button>("RestartBtn").clicked += () => RestartGame();
         root.Q<Button>("MainMenuBtn").clicked += () => LoadMainMenu();
+        root.Q<Button>("SettingsBtn").clicked += () => LoadSettingsScene();
     }
 
     void Update()
@@ -63,6 +64,11 @@ public class PauseMenuController : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main_Menu_Scene"); // Ensure this matches your scene name
+    }
+    void LoadSettingsScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("SettingsScene"); // Ensure this matches your scene name
     }
 }
 
