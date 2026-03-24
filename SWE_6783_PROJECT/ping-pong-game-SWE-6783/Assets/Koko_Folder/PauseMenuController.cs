@@ -6,6 +6,8 @@ public class PauseMenuController : MonoBehaviour
 {
     private VisualElement root;
     private bool isPaused = false;
+    private ScoreHistoryController scoreHistoryController;
+    private VisualElement scoreHistoryRoot;
 
     void OnEnable()
     {
@@ -18,11 +20,18 @@ public class PauseMenuController : MonoBehaviour
         root.style.width = Length.Percent(100);
         root.style.height = Length.Percent(100);
 
+        scoreHistoryController = FindObjectOfType<ScoreHistoryController>();
+        scoreHistoryRoot = scoreHistoryController
+
+        .GetComponent<UIDocument>()
+        .rootVisualElement;
+
         // Assign Button Events
         root.Q<Button>("ResumeBtn").clicked += () => TogglePause();
         root.Q<Button>("RestartBtn").clicked += () => RestartGame();
         root.Q<Button>("MainMenuBtn").clicked += () => LoadMainMenu();
         root.Q<Button>("SettingsBtn").clicked += () => LoadSettingsScene();
+        root.Q<Button>("ScoresBtn").clicked += () => LoadScoreHistory();
     }
 
     void Update()
@@ -70,5 +79,12 @@ public class PauseMenuController : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("SettingsScene"); // Ensure this matches your scene name
     }
-}
 
+    void LoadScoreHistory()
+    {
+        Time.timeScale = 1f;
+        root.style.visibility = Visibility.Hidden; // Hide pause menu
+        scoreHistoryRoot.style.display = DisplayStyle.Flex;
+    }
+
+}
