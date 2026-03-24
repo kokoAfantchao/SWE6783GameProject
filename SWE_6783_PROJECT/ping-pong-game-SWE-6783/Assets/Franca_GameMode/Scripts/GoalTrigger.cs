@@ -8,7 +8,7 @@ public class GoalTrigger : MonoBehaviour
     {
         if (col.CompareTag("Ball"))
         {
-            GameModeManager.Instance.GoalScored(isLeftGoal);
+           // GameModeManager.Instance.GoalScored(isLeftGoal);
         }
     }
 }

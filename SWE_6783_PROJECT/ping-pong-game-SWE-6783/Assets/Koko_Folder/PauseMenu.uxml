@@ -4,6 +4,7 @@
             <ui:Label text="PAUSED" name="MenuTitle" style="font-size: 40px; color: white; -webkit-unity-font-style: bold; unity-text-align: upper-center; margin-bottom: 20px; position: relative; width: 100%; height: 50px;"/>
             <ui:Button name="ResumeBtn" text="RESUME" class="menu-button" style="margin-bottom: 10px; height: 45px; width: 100%; font-size: 20px;"/>
             <ui:Button name="RestartBtn" text="RESTART" class="menu-button" style="margin-bottom: 10px; height: 45px; width: 100%; font-size: 20px;"/>
+            <ui:Button name="ScoresBtn" text="SCORE HISTORY" class="menu-button" style="margin-bottom: 10px; height: 45px; width: 100%; font-size: 20px;"/>
             <ui:Button name="SettingsBtn" text="SETTING MENU" class="menu-button" style="margin-bottom: 10px; height: 45px; width: 100%; font-size: 20px;"/>
             <ui:Button name="MainMenuBtn" text="MAIN MENU" class="menu-button" style="height: 45px; background-color: rgb(180, 50, 50); width: 100%; font-size: 20px;"/>
         </ui:VisualElement>
