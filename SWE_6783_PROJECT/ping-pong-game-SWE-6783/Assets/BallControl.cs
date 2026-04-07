@@ -8,15 +8,8 @@ public class BallControl : MonoBehaviour {
 	private Rigidbody2D rb2d;
 	public float speed = 30f;
 	public float bounceInfluence = 0.5f;
+	private AudioSource bounceAudio;
 
-	// void GoBall() {
-	// 	float rand = Random.Range (0, 2);
-	// 	if (rand < 1) {
-	// 		rb2d.AddForce (new Vector2 (20, -15));
-	// 	} else {
-	// 		rb2d.AddForce (new Vector2 (-20, -15));
-	// 	}
-	// }
 	void GoBall() {
     // Determine the horizontal direction (1 or -1)
     float directionX = Random.Range(0, 2) < 1 ? 1f : -1f;
@@ -25,11 +18,18 @@ public class BallControl : MonoBehaviour {
     // .normalized ensures the vector's length is 1, then we multiply by speed
     rb2d.linearVelocity = new Vector2(directionX, -0.75f).normalized * speed;
 }
+public void Launch()
+{
+    rb2d.linearVelocity = Vector2.zero;
+    float directionX = Random.Range(0, 2) < 1 ? 1f : -1f;
+    rb2d.linearVelocity = new Vector2(directionX, -0.75f).normalized * speed;
+}
 
 	// Use this for initialization
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D> ();
-		Invoke ("GoBall", 2);
+		bounceAudio = GetComponent<AudioSource> ();
+		//Invoke("GoBall", 2);
 	}
 
 	void FixedUpdate () {
@@ -46,21 +46,6 @@ public class BallControl : MonoBehaviour {
 		ResetBall ();
 		Invoke ("GoBall", 1);
 	}
-
-// void OnCollisionEnter2D(Collision2D coll) {
-//     if (coll.collider.CompareTag("Player")) {
-//         // Determine if this is the Left or Right paddle based on position
-//         // If ball is on the right side of the paddle, move Right (1). Otherwise, move Left (-1).
-//         float directionX = (transform.position.x > coll.transform.position.x) ? 1f : -1f;
-
-//         // Calculate where on the paddle it hit (-1 to 1)
-//         float hitPoint = (transform.position.y - coll.transform.position.y) / coll.collider.bounds.size.y;
-
-//         // Apply the new velocity
-//         Vector2 newDirection = new Vector2(directionX, hitPoint).normalized;
-//         rb2d.linearVelocity = newDirection * speed;
-//     }
-// }
 void OnCollisionEnter2D(Collision2D coll) {
     if (coll.collider.CompareTag("Player")) {
         // 1. Determine horizontal direction (Away from paddle)
@@ -78,5 +63,6 @@ void OnCollisionEnter2D(Collision2D coll) {
         Vector2 newDirection = new Vector2(directionX, finalY).normalized;
         rb2d.linearVelocity = newDirection * speed;
     }
+	bounceAudio.Play();
 }
 }

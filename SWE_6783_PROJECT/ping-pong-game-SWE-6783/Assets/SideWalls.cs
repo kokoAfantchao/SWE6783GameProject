@@ -7,6 +7,7 @@ public class SideWalls : MonoBehaviour {
     public GameManager GameManager;
 	public GameObject gameModeManager;
 	private GameModeManager gameManagerScript;
+	public AudioSource scoreSound;
 
 
 	void Start()
@@ -16,6 +17,7 @@ public class SideWalls : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D hitInfo) {
 		if (hitInfo.name == "Ball Prefab")
 		{
+			scoreSound.Play();
 			Debug.Log("Ball hit " + transform.name);
 			string wallName = transform.name;
 			//GameManager.Score(wallName);

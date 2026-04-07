@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System;
+using System.Collections;
 
 public class GameModeManager : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class GameModeManager : MonoBehaviour
     public TMP_Text winnerText;
     public int winningValue = 5;
     private string restartText = "\nPress escape to open the menu";
+    public float startTime = 5f;
+    public TMP_Text gameStartText;
 
 
 
@@ -59,8 +62,12 @@ public class GameModeManager : MonoBehaviour
         int getLevel = PlayerPrefs.GetInt("Difficulty", 0);
         DifficultyData difficulty = levelSettings[getLevel];
         ApplyDifficulty(difficulty);
-        timerIsRunning = true;
+        timerIsRunning = false;
         winnerText.gameObject.SetActive(false);
+        ballPrefab.SetActive(false);
+        playerObj.SetActive(false);
+        aiObj.SetActive(false);
+        StartCoroutine(CountdownToStart());
     }
     void ApplyDifficulty(DifficultyData difficulty)
     {
@@ -70,6 +77,25 @@ public class GameModeManager : MonoBehaviour
         aiObj.transform.localScale = new Vector3(1, difficulty.aiYScale, 1);
 
         ballPrefab.GetComponent<BallControl>().speed = difficulty.ballSpeed;
+    }
+
+    IEnumerator CountdownToStart()
+    {
+        float timeLeft = startTime;
+        while (timeLeft > 0)
+        {
+            gameStartText.text = Mathf.Ceil(timeLeft).ToString();
+            yield return new WaitForSeconds(1f);
+            timeLeft--;
+        }
+        gameStartText.text = "GO!";
+        yield return new WaitForSeconds(0.5f);
+        gameStartText.gameObject.SetActive(false);
+        timerIsRunning = true;
+        ballPrefab.SetActive(true);
+        playerObj.SetActive(true);
+        aiObj.SetActive(true);
+        ResetBall();
     }
 
     public void GoalScored(string wall)
@@ -112,7 +138,7 @@ public class GameModeManager : MonoBehaviour
     void ResetBall()
     {
         ballPrefab.transform.position = Vector3.zero;
-        //ballPrefab.Launch();
+        ballPrefab.GetComponent<BallControl>().Launch();
     }
     void DisplayTime(float timeToDisplay)
     {
