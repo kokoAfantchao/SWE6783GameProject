@@ -91,8 +91,8 @@ public class PauseMenuController : MonoBehaviour
 
     void LoadScoreHistory()
     {
-        Time.timeScale = 1f;
-        root.style.visibility = Visibility.Hidden; // Hide pause menu
+        Time.timeScale = 0f;
+        root.style.display = DisplayStyle.None; // Hide pause menu
         scoreHistoryRoot.style.display = DisplayStyle.Flex;
     }
 
