@@ -17,7 +17,7 @@ public class GameModeManager : MonoBehaviour
     public int leftScore = 0;
     public int rightScore = 0;
 
-    public BallController ball;
+    //public BallController ball;
     public GameObject ballPrefab;
     public GameObject playerObj;
     public GameObject aiObj;
@@ -95,6 +95,7 @@ public class GameModeManager : MonoBehaviour
         ballPrefab.SetActive(true);
         playerObj.SetActive(true);
         aiObj.SetActive(true);
+        yield return null; // wait one frame so BallControl.Start() runs and assigns rb2d
         ResetBall();
     }
 

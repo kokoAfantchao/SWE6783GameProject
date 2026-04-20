@@ -9,6 +9,9 @@ public class PauseMenuController : MonoBehaviour
     private ScoreHistoryController scoreHistoryController;
     private VisualElement scoreHistoryRoot;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip clickSound;
+
     void OnEnable()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
@@ -27,11 +30,11 @@ public class PauseMenuController : MonoBehaviour
         .rootVisualElement;
 
         // Assign Button Events
-        root.Q<Button>("ResumeBtn").clicked += () => TogglePause();
-        root.Q<Button>("RestartBtn").clicked += () => RestartGame();
-        root.Q<Button>("MainMenuBtn").clicked += () => LoadMainMenu();
-        root.Q<Button>("SettingsBtn").clicked += () => LoadSettingsScene();
-        root.Q<Button>("ScoresBtn").clicked += () => LoadScoreHistory();
+        root.Q<Button>("ResumeBtn").clicked += () => { PlayClick(); TogglePause(); };
+        root.Q<Button>("RestartBtn").clicked += () => { PlayClick(); RestartGame(); };
+        root.Q<Button>("MainMenuBtn").clicked += () => { PlayClick(); LoadMainMenu(); };
+        root.Q<Button>("SettingsBtn").clicked += () => { PlayClick(); LoadSettingsScene(); };
+        root.Q<Button>("ScoresBtn").clicked += () => { PlayClick(); LoadScoreHistory(); };
     }
 
     void Update()
@@ -63,6 +66,12 @@ public class PauseMenuController : MonoBehaviour
         }
     }
 
+    private void PlayClick()
+    {
+        if (audioSource != null && clickSound != null)
+            audioSource.PlayOneShot(clickSound);
+    }
+
     void RestartGame()
     {
         Time.timeScale = 1f; // Reset time before reloading!
@@ -82,8 +91,8 @@ public class PauseMenuController : MonoBehaviour
 
     void LoadScoreHistory()
     {
-        Time.timeScale = 1f;
-        root.style.visibility = Visibility.Hidden; // Hide pause menu
+        Time.timeScale = 0f;
+        root.style.display = DisplayStyle.None; // Hide pause menu
         scoreHistoryRoot.style.display = DisplayStyle.Flex;
     }
 

@@ -15,26 +15,37 @@ public class ScoreDataWrapper
 public class ScoreHistoryController : MonoBehaviour
 {
     private List<ScoreData> scoreHistory = new List<ScoreData>();
+    public GameObject PauseMenu;
 
     private string SaveFilePath => Path.Combine(Application.persistentDataPath, "scoreHistory.json");
 
+
     void OnEnable()
     {
+        
+        var pauseUI = PauseMenu.GetComponent<UIDocument>().rootVisualElement;
+        
+        
         var root = GetComponent<UIDocument>().rootVisualElement;
         root.style.display = DisplayStyle.None; // Hide by default
-        root.Q<Button>("CloseBtn").clicked += () => LoadMainMenu();
+        root.Q<Button>("CloseBtn").clicked += () => {
+            pauseUI.style.display = DisplayStyle.Flex;
+            root.style.display = DisplayStyle.None; //LoadMainMenu();
+        };
         LoadScores();
         PopulateScoreList(root);
     }
 
     private void PopulateScoreList(VisualElement root)
     {
+        
         var scoreList = root.Q<VisualElement>("ScoreList");
         if (scoreList == null)
         {
             Debug.LogError("❌ 'ScoreList' VisualElement not found in Scores.uxml!");
             return;
         }
+        //Time.timeScale = 0f;
 
         scoreList.Clear();
 
