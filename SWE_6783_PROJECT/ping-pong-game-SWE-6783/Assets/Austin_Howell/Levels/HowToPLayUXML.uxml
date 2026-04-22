@@ -1,0 +1,25 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Austin_Howell/Levels/HowToPlayUSS.uss?fileID=7433441132597879392&amp;guid=4bbb705741c58c94bb66d6f109fb778d&amp;type=3#HowToPlayUSS"/>
+    <ui:ScrollView class="scrollBody">
+        <ui:Label text="How To Play" class="title"/>
+
+        <ui:Label text="Movement" class="heading"/>
+
+        <!-- Row with text, icon, text, icon, text -->
+        <ui:VisualElement class="row">
+            <ui:Label text="Use W" class="body"/>
+            <ui:VisualElement class="iconUp"/>
+            <ui:Label text="and S" class="body"/>
+            <ui:VisualElement class="iconDown"/>
+            <ui:Label text="to move your paddle up and down." class="body"/>
+        </ui:VisualElement>
+
+        <ui:Label text="Scoring" class="heading"/>
+        <ui:Label text="Get the ball past your opponent to score a point." class="body"/>
+
+        <ui:Label text="Winning" class="heading"/>
+        <ui:Label text="First player to 5 points wins the match." class="body"/>
+
+        <ui:Button name="backButton" text="Main Menu" class="backBtn"/>
+    </ui:ScrollView>
+</ui:UXML>
